@@ -1,7 +1,44 @@
+//We decided to choose a queue as our linear data structure for our Contract Tracing system.
+//With a queue we can add new contacts at the end of the queue as well as retrieve one from the front.
+//The complexity of the queue is constant O(1), this means that our traversal will be efficent
+//no matter how many contacts there are. Using a queue also allows us to use the Breadth first Search Traversal
+//algorithm, this helps us move through the contact tree from top to bottom, and a queue pairs perfectly with this
+//since it follows the first in first out rule.
+
 #include <iostream>
-#include <queue>
+//#include <queue>
 #include <list>
 using namespace std;
+
+
+template <typename T>
+class MyQueue {
+private:
+    list<T> elements;
+
+public:
+    void push(const T& element) {
+        elements.push_back(element);
+    }
+
+    void pop() {
+        if (!elements.empty()) {
+            elements.pop_front();
+        }
+    }
+
+    T front() {
+        if (!elements.empty()) {
+            return elements.front();
+        }
+        throw runtime_error("Queue is empty");
+    }
+
+    bool empty() {
+        return elements.empty();
+    }
+};
+
 
 template <typename T>
 class TreeNode {
@@ -28,7 +65,7 @@ private:
             return nullptr;
 
         //using queue
-        queue<TreeNode<T>*> nodesQueue;
+        MyQueue<TreeNode<T>*> nodesQueue;
         nodesQueue.push(root);
 
         //traverse the lists (breadth first search traversal) until all nodes are checked
@@ -54,7 +91,7 @@ private:
         if (node == nullptr) return;
 
         // initialize queue
-        queue<TreeNode<T>*> nodesQueue;
+        MyQueue<TreeNode<T>*> nodesQueue;
 
         //node(root of subtree)
         nodesQueue.push(node);
@@ -104,7 +141,7 @@ public:
     // Method to get the size of the tree
     int GetSize() {
         int size = 0;
-        queue<TreeNode<T>*> nodesQueue;
+        MyQueue<TreeNode<T>*> nodesQueue;
 
         //check if not empty
         if (root != nullptr) {
@@ -255,7 +292,7 @@ public:
     void PrintContactTree() {
 
         //make a queue
-        queue<TreeNode<T>*> nodesQueue;
+        MyQueue<TreeNode<T>*> nodesQueue;
 
         if (root != nullptr) {
             nodesQueue.push(root);
