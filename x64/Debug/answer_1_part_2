@@ -1,0 +1,6 @@
+1/ Which of the above is best suited for the job? Justify your choice for the required functions & their complexity. 10pts 
+
+Queue is best suited for Contact Tracing Data Structure. It perfectly matches the needs of breadth-first search (BFS) operations. And for tree data structures like the one in contact tracing, BFS is a 
+crucial operation for tasks such as searching for a node and traversing the tree level by level. In contrast, other data structures all have limitations: singly and doubly linked lists lack efficient 
+operations on both ends; circular linked lists complicate the traversal logic; stacks operate on a Last-In-First-Out principle, which contradicts the First-In-First-Out requirement of BFS; and deques provide 
+more functionality than required for BFS, but resulting in unnecessary sophistication. Both enqueue and dequeue operations in Queue have O(1) complexity, making it the most suitable choice for this data structure.
